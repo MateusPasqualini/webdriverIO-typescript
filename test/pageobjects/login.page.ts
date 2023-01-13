@@ -7,13 +7,29 @@ export class LoginPage extends Page {
      */
 
     @ElementLocator('#username')
-    public usernameField: WebdriverIO.Element;
+    private usernameField: WebdriverIO.Element;
 
     @ElementLocator('#password')
-    public passwordField: WebdriverIO.Element;
+    private passwordField: WebdriverIO.Element;
 
     @ElementLocator('[id="login"] > button')
-    public loginButton: WebdriverIO.Element;
+    private loginButton: WebdriverIO.Element;
+
+    @ElementLocator('[class="example"] > h2')
+    private pageHeader: WebdriverIO.Element
+
+    @ElementLocator('#flash')
+    private flashAlert: WebdriverIO.Element
+
+
+    constructor() {
+        super();
+        this.PAGE_URL = 'login'
+    }
+
+    protected async isLoaded(): Promise<boolean> {
+        return await this.pageHeader.isExisting()
+    }
 
     public async login(username: string, password: string) {
         await this.usernameField.setValue(username);
@@ -21,11 +37,10 @@ export class LoginPage extends Page {
         await this.loginButton.click();
     }
 
-    public open() {
-        return super.open('login');
+    public async getAlert() {
+        return this.flashAlert;
     }
 
+
 }
-
-
 

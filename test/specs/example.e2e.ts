@@ -1,15 +1,20 @@
 import {LoginPage} from '../pageobjects/login.page.js'
-import SecurePage from '../pageobjects/secure.page.js'
+import Generate from "../utils/pageFactory.js";
+
 
 describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        let loginPage = new LoginPage()
-        await loginPage.open()
 
+    it('should login with valid credentials', async () => {
+        const loginPage = Generate(LoginPage)
         await loginPage.login('tomsmith', 'SuperSecretPassword!')
-        await expect(SecurePage.flashAlert).toBeExisting()
-        await expect(SecurePage.flashAlert).toHaveTextContaining(
+        await expect(loginPage.getAlert()).toBeExisting()
+        await expect(loginPage.getAlert()).toHaveTextContaining(
             'You logged into a secure area!')
+    })
+
+
+    after(async () => {
+        await browser.deleteSession()
     })
 })
 
