@@ -1,8 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/webstorm,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm,node
 
+test/**/*.js
 ### Node ###
 # Logs
+wdio.conf.js
 logs
 *.log
 npm-debug.log*
