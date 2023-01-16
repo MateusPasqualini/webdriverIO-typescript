@@ -14,6 +14,7 @@
     "@types/mocha": "^10.0.1"
   },
   "scripts": {
+    "allure:serve": "allure generate allure-results --clean && allure open",
     "wdio": "wdio run ./wdio.conf.ts"
   }
 }

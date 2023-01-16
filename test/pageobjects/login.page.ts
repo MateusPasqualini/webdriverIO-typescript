@@ -2,10 +2,6 @@ import Page from './page.js';
 import ElementLocator from "../decorator/elementLocator.decorator.js";
 
 export class LoginPage extends Page {
-    /**
-     * define selectors using page factory methods
-     */
-
     @ElementLocator('#username')
     private usernameField: WebdriverIO.Element;
 

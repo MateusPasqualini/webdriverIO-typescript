@@ -13,7 +13,7 @@ export abstract class LoadableComponent {
     protected async waitUntilLoaded(): Promise<void> {
         const isLoaded = await this.isLoaded()
         if (!isLoaded) {
-            await browser.waitUntil(this.isLoaded);
+            await browser.waitUntil(this.isLoaded, {timeoutMsg: 'Page was no properly loaded'});
         }
     }
 

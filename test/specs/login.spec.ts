@@ -5,7 +5,7 @@ import Generate from "../utils/pageFactory.js";
 describe('My Login application', () => {
 
     it('should login with valid credentials', async () => {
-        const loginPage = Generate(LoginPage)
+        const loginPage = await Generate(LoginPage)
         await loginPage.login('tomsmith', 'SuperSecretPassword!')
         await expect(loginPage.getAlert()).toBeExisting()
         await expect(loginPage.getAlert()).toHaveTextContaining(
