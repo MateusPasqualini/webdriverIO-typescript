@@ -27,6 +27,9 @@ jobs:
       - name: Install app
         run: npm install
 
+      - name: install and run selenium-standalone
+        run: npx selenium-standalone install && npx selenium-standalone start
+
       - name: Compile
         run: npx tsc
         continue-on-error: true
