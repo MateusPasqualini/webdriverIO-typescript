@@ -2,20 +2,12 @@ import Page from './page.js';
 import ElementLocator from "../decorator/elementLocator.decorator.js";
 
 export class LoginPage extends Page {
-    @ElementLocator('#username')
-    private usernameField: WebdriverIO.Element;
 
-    @ElementLocator('#password')
-    private passwordField: WebdriverIO.Element;
-
-    @ElementLocator('[id="login"] > button')
-    private loginButton: WebdriverIO.Element;
-
-    @ElementLocator('[class="example"] > h2')
+    @ElementLocator('[class="deel-ui__typography__heading_1 semi-bold text-center"]')
     private pageHeader: WebdriverIO.Element
 
-    @ElementLocator('#flash')
-    private flashAlert: WebdriverIO.Element
+    @ElementLocator('[data-qa="sign-up"]')
+    private signUpButton: WebdriverIO.Element
 
 
     constructor() {
@@ -24,19 +16,11 @@ export class LoginPage extends Page {
     }
 
     protected async isLoaded(): Promise<boolean> {
-        return await this.pageHeader.isExisting()
+        return Promise.resolve(true)
     }
 
-    public async login(username: string, password: string) {
-        await this.usernameField.setValue(username);
-        await this.passwordField.setValue(password);
-        await this.loginButton.click();
+    public async clickSignUpButton(){
+        await this.signUpButton.click()
     }
-
-    public async getAlert() {
-        return this.flashAlert;
-    }
-
-
 }
 
