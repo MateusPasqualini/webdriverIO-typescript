@@ -2,7 +2,7 @@ import Generate from "../utils/pageFactory.js";
 import {CheckboxPage} from "../pageobjects/checkbox.page.js";
 
 
-describe('My checkbox application', () => {
+describe('Checkboxes Test', () => {
     it('should check all the boxes', async () => {
         const checkBoxPage = await Generate(CheckboxPage)
 

@@ -2,7 +2,7 @@ import {LoginPage} from '../pageobjects/login.page.js'
 import Generate from "../utils/pageFactory.js";
 
 
-describe('My Login application', () => {
+describe('Login tests', () => {
 
     it('should login with valid credentials', async () => {
         const loginPage = await Generate(LoginPage)
