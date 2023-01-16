@@ -122,9 +122,7 @@ export const config: Options.Testrunner = {
     // commands. Instead, they hook themselves up into the test process.
     services: ['geckodriver', ['selenium-standalone', {
         drivers: {
-            firefox: '0.29.1',
             chrome: true,
-            chromiumedge: 'latest'
         }
     }]],
 
