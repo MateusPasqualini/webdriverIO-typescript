@@ -1,4 +1,4 @@
-import type { Options } from '@wdio/types'
+import type {Options} from '@wdio/types'
 
 export const config: Options.Testrunner = {
     //
@@ -12,8 +12,8 @@ export const config: Options.Testrunner = {
             project: './tsconfig.json'
         }
     },
-    
-    
+
+
     //
     // ==================
     // Specify Test Files
@@ -60,7 +60,7 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -120,8 +120,14 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['geckodriver','selenium-standalone'],
-    
+    services: ['geckodriver', ['selenium-standalone', {
+        drivers: {
+            firefox: '0.29.1',
+            chrome: true,
+            chromiumedge: 'latest'
+        }
+    }]],
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -145,7 +151,6 @@ export const config: Options.Testrunner = {
     reporters: [['allure', {outputDir: 'allure-results'}]],
 
 
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -247,7 +252,7 @@ export const config: Options.Testrunner = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+    afterTest: async function (test, context, {error, result, duration, passed, retries}) {
         if (!passed) {
             await browser.takeScreenshot();
         }
@@ -297,10 +302,10 @@ export const config: Options.Testrunner = {
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
     /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {String} oldSessionId session ID of the old session
+     * @param {String} newSessionId session ID of the new session
+     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
 }
