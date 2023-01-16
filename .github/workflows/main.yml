@@ -10,11 +10,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    services:
-      selenium-standalone:
-        image: webdriverio/selenium-standalone
-        ports:
-          - 4444:4444
+
     steps:
       - uses: browser-actions/setup-chrome@latest
       - run: chrome --version
@@ -30,6 +26,9 @@ jobs:
 
       - name: Install app
         run: npm install
+
+      - name: install selenium-standalone
+        run: npx selenium-standalone install
 
       - name: Compile
         run: npx tsc
